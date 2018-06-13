@@ -1,4 +1,4 @@
-package com.tsystems.javaschool.brajnikov.storestand;
+package com.tsystems.javaschool.brajnikov.storestand.test;
 
 
 import com.sun.jersey.api.client.Client;

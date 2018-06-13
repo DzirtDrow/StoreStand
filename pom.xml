@@ -86,6 +86,22 @@
             <version>5.2.0</version>
         </dependency>
 
+        <!--<dependency>-->
+            <!--<groupId>javax.faces</groupId>-->
+            <!--<artifactId>javax.faces-api</artifactId>-->
+            <!--<version>2.3</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.atmosphere</groupId>
+            <artifactId>atmosphere-runtime</artifactId>
+            <version>2.1.5</version>
+        </dependency>
+
     </dependencies>
 
     <build>
