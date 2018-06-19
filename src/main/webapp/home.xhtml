@@ -2,69 +2,57 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j">
+
 <head>
     <title>Start Page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
 
 </head>
 
 <h:body>
 
-    <p:socket channel="/notify">
-        <p:ajax event="message" update=":mainform:tbl"/>
-    </p:socket>
-
-
 
     <h:form id="mainform">
-        <!--<p:carousel value="#{promotionsBean.promotions}" headerText="Promo Actions" var="promo"-->
-        <!--itemStyle="text-align:center"-->
-        <!--responsive="true">-->
-        <!--<p:panelGrid columns="2" style="width:100%;margin:10px 0px" columnClasses="label,value" layout="grid"-->
-        <!--styleClass="ui-panelgrid-blank">-->
-        <!--<f:facet name="header">-->
-
-        <!--</f:facet>-->
-
-        <!--<h:outputText value="Id:"/>-->
-        <!--<h:outputText value="#{promo.id}"/>-->
-
-        <!--<h:outputText value="Name: "/>-->
-        <!--<h:outputText value="#{promo.name}"/>-->
-
-        <!--<h:outputText value="Description:"/>-->
-        <!--<h:outputText value="$#{promo.description}"/>-->
-        <!--</p:panelGrid>-->
-
-        <!--<f:facet name="footer">-->
-        <!--In total there are #{fn:length(promotionsBean.promotions)} promotions.-->
-        <!--</f:facet>-->
-        <!--</p:carousel>-->
-        <p:dataTable id="tbl" value="#{promotionsBean.promotions}" headerText="Promo Actions" var="promo">
-            <p:column headerText="Id">
+        <rich:dataTable id="promoTable" value="#{promotionsBean.promotions}" var="promo">
+            <rich:column name="ID">
+                <f:facet name="header">ID</f:facet>
                 <h:outputText value="#{promo.id}"/>
-            </p:column>
-
-            <p:column headerText="Name">
+            </rich:column>
+            <rich:column name="Name">
+                <f:facet name="header">Name</f:facet>
                 <h:outputText value="#{promo.name}"/>
-            </p:column>
-
-            <p:column headerText="Description">
+            </rich:column>
+            <rich:column name="Description">
+                <f:facet name="header">Description</f:facet>
                 <h:outputText value="#{promo.description}"/>
-            </p:column>
+            </rich:column>
+        </rich:dataTable>
 
-        </p:dataTable>
-        In total there are #{fn:length(promotionsBean.promotions)} promotions.
+        <br/><br/>
+        <rich:dataTable id="topGoodsTable" value="#{topGoodsBean.topGoods}" var="goods">
+            <rich:column name="ID">
+                <f:facet name="header">Price</f:facet>
+                <h:outputText value="$#{goods.price}"/>
+            </rich:column>
+            <rich:column name="Name">
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{goods.name}"/>
+            </rich:column>
+            <rich:column name="Description">
+                <f:facet name="header">Description</f:facet>
+                <h:outputText value="#{goods.description}"/>
+            </rich:column>
+        </rich:dataTable>
+
+        <f:websocket channel="promo">
+            <f:ajax event="promoupd" render="promoTable" onevent="alert('test')"/>
+
+        </f:websocket>
     </h:form>
 
-
-    <!--<p:socket channel="promos">-->
-    <!--<f:ajax event="${promotionsBean.promotions}" render=":promos"/>-->
-    <!--<f:ajax event="general" render=":promotions"/>-->
-    <!--</p:socket>-->
 
 </h:body>
 
